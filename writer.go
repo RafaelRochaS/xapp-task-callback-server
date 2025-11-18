@@ -4,9 +4,10 @@ import (
 	"encoding/json"
 	"log"
 	"os"
+	"time"
 )
 
-func fileWriter(path string, done chan struct{}) {
+func fileWriter(path string) {
 	f, err := os.OpenFile(path, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
 	if err != nil {
 		log.Fatalf("Error opening file: %v", err)
@@ -17,10 +18,9 @@ func fileWriter(path string, done chan struct{}) {
 	enc := json.NewEncoder(f)
 
 	for data := range logChan {
+		data.Timestamp = time.Now()
 		if err := enc.Encode(data); err != nil {
 			log.Printf("Error writing log: %v", err)
 		}
 	}
-
-	close(done)
 }
