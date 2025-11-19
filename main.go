@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"time"
 )
 
 type Data struct {
@@ -14,7 +13,7 @@ type Data struct {
 	ExecutionSite string  `json:"executionSite"`
 	CreatedAt     int64   `json:"createdAt"`
 	Duration      float64 `json:"duration"`
-	Timestamp     time.Time
+	Timestamp     int64   `json:"timestamp"`
 }
 
 var logChan = make(chan Data, 10000)

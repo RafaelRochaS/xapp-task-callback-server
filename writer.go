@@ -18,7 +18,7 @@ func fileWriter(path string) {
 	enc := json.NewEncoder(f)
 
 	for data := range logChan {
-		data.Timestamp = time.Now()
+		data.Timestamp = time.Now().Unix()
 		if err := enc.Encode(data); err != nil {
 			log.Printf("Error writing log: %v", err)
 		}
