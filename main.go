@@ -9,7 +9,7 @@ import (
 
 type Data struct {
 	TaskID        string  `json:"taskId"`
-	DeviceID      string  `json:"deviceId"`
+	DeviceID      int     `json:"deviceId"`
 	WorkloadSize  int     `json:"workloadSize"`
 	ExecutionSite string  `json:"executionSite"`
 	CreatedAt     int64   `json:"createdAt"`
