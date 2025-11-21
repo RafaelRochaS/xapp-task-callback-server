@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"os"
 )
 
 type Data struct {
@@ -35,7 +36,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	go fileWriter("results.jsonl")
+	os.Mkdir("output", 0755)
+	go fileWriter("output/results.jsonl")
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", handler)
